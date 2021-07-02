@@ -6,9 +6,11 @@
     },
     "extends": [
         "plugin:react/recommended",
-        "airbnb",
+        "airbnb-typescript",
         "next",
-        "next/core-web-vitals"
+        "next/core-web-vitals",
+        "plugin:import/typescript",
+        "plugin:react/recommended"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -20,11 +22,24 @@
     },
     "plugins": [
         "react",
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "import"
     ],
     "rules": {
         "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"]}],
         "react/jsx-props-no-spreading": 0,
-        "linebreak-style": "off"
+        "linebreak-style": "off",
+        "no-console": "off",
+        "import/extensions": [
+          "error",
+          "ignorePackages",
+          {
+            "js": "never",
+            "jsx": "never",
+            "ts": "never",
+            "tsx": "never"
+          }
+       ]
     }
+
 }
