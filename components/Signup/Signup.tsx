@@ -10,7 +10,7 @@ interface State {
   firstName: string,
   lastName: string,
   email: string,
-  licenseID: number,
+  license: number,
   state: string
 }
 
@@ -18,7 +18,7 @@ const initialState: State = {
   firstName: '',
   lastName: '',
   email: '',
-  licenseID: 0,
+  license: 0,
   state: ''
 }
 
@@ -80,14 +80,14 @@ const Signup: React.FC = () => {
         />
       </Form.Item>
       <Form.Item
-        name="License ID"
+        name="License"
         rules={[{ required: true, message: 'Please input your Password!' }]}
       >
         <Input
           prefix={<LockOutlined className="site-form-item-icon" />}
-          type="License ID"
-          placeholder="License ID"
-          value={signup.licenseID}
+          type="License"
+          placeholder="License"
+          value={signup.license}
           onChange={handleSignup}
         />
       </Form.Item>
