@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '../styles/Home.module.css';
-import Login from '../components/login';
+import Login from '../components/Login/Login';
 
 export default function Home() {
   return (
