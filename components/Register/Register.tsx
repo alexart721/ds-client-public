@@ -1,73 +1,50 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styles from '../../styles/signup.module.css';
 import { Form, Input, Button } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import Link from 'next/link';
+import { UserAuth, User } from '../../types';
+import { useRouter } from 'next/dist/client/router';
+import { setUserPassword } from '../../services/apiServices';
 
-interface State {
-  firstName: string,
-  lastName: string,
-  email: string,
-  licenseID: string,
-  state: string,
-  password: string
-}
+const Register: React.FC<{ user: User, accessToken: string }> = ({ user, accessToken }) => {
 
-const initialState: State = {
-  firstName: '',
-  lastName: '',
-  email: '',
-  licenseID: '',
-  state: '',
-  password: ''
-}
-
-const Register: React.FC = () => {
-  const [register, setRegister] = useState<State>(initialState);
-  const [registerError, setRegisterError] = useState<boolean>(false);
-
-  const handleRegister: React.ChangeEventHandler<HTMLInputElement> = ({target}) => {
-    setRegister((oldRegister: State) => ({...oldRegister, [target.name]:target.value}))
-    setRegisterError(false);
-  };
-
-  const onFinish = (values: string) => {
-    console.log('Received values of form: ', values);
+  const onFinish = async (values: UserAuth) => {
+    try {
+      const newAccessToken: string = await setUserPassword(accessToken, values).then(res => res.json());
+      // Need to redirect to auth side of client here
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
     <div className={styles.container}>
-      <h1>Welcome to DocterSource!</h1>
-      <div>First Name:{register.firstName}</div>
-      <div>Last Name:{register.lastName}</div>
-      <div>Email:{register.email}</div>
-      <div>LicenseID:{register.licenseID}</div>
-      <div>State:{register.state}</div>
       <Form
         name="normal_login"
         // className="login-form"
-        initialValues={{ remember: true }}
+        initialValues={user}
         onFinish={onFinish}
       >
-
+        {
+          Object.entries(user).map(([key, value]) => (
+            <Form.Item name={key}>
+              <Input value={value} disabled />
+            </Form.Item>
+          ))
+        }
         <Form.Item
           name="Password"
           rules={[{ required: true, message: 'Please input your Password!' }]}
         >
-          <Input
+          <Input.Password
             prefix={<LockOutlined className="site-form-item-icon" />}
             placeholder="Password"
-            value={register.licenseID}
-            onChange={handleRegister}
           />
         </Form.Item>
         <Form.Item>
-          <Link href='/appRecieved'>
-            <Button type="primary" htmlType="submit" className="login-form-button">
-              Register
-            </Button>
-          </Link>
-
+          <Button type="primary" htmlType="submit" className="login-form-button">
+            Register
+          </Button>
         </Form.Item>
       </Form>
     </div>

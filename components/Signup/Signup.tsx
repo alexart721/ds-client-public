@@ -2,6 +2,9 @@ import React, {useState} from 'react';
 import styles from '../../styles/signup.module.css';
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import { useRouter } from 'next/router';
+import { createNewUser } from '../../services/apiServices';
+import { User } from '../../types';
 
 interface State {
   firstName: string,
@@ -21,15 +24,16 @@ const initialState: State = {
 
 const Signup: React.FC = () => {
   const [signup, setSignup] = useState<State>(initialState);
-  const [SignupError, setSignupError] = useState<boolean>(false);
+  const router = useRouter();
 
   const handleSignup: React.ChangeEventHandler<HTMLInputElement> = ({target}) => {
     setSignup((oldSignup: State) => ({...oldSignup, [target.name]:target.value}))
-    setSignupError(false);
   };
 
-  const onFinish = (values: string) => {
-    console.log('Received values of form: ', values);
+  const onFinish = async (values: User) => {
+    const newUser = await createNewUser(values).then(res => res.json());
+    // Logic to generate email and send to admin
+    router.push('/appReceived');
   };
 
   return (

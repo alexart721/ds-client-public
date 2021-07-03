@@ -2,33 +2,29 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import { UserLogin } from '../../types';
+import { loginUser } from '../../services/apiServices';
 
-interface State {
-  email: string;
-  password: string;
-}
-
-const initialState: State = {
+const initialState: UserLogin = {
   email: '',
   password: ''
 }
 
 const Login: React.FC = () => {
-  const [login, setLogin] = useState<State>(initialState);
-  const [loginError, setLoginError] = useState<boolean>(false);
+  const [login, setLogin] = useState<UserLogin>(initialState);
 
   const handleLogin: React.ChangeEventHandler<HTMLInputElement> = ({target}) => {
-    setLogin((oldLogin: State) => ({...oldLogin, [target.name]:target.value}))
-    setLoginError(false);
+    setLogin((oldLogin: UserLogin) => ({...oldLogin, [target.name]:target.value}))
   };
 
-  // const validateForm = () => {
-  //   return !login.email || !login.password;
-  // };
 
-
-  const onFinish = (values: string) => {
-    console.log('Received values of form: ', values);
+  const onFinish = async (values: UserLogin) => {
+    try {
+      const accessToken = await loginUser(values).then(res => res.json());
+      // Redirect to auth client
+    } catch (error) {
+      console.error(error);
+    }
   };
 
 
@@ -38,7 +34,6 @@ const Login: React.FC = () => {
       className="login-form"
       initialValues={{ remember: true }}
       onFinish={onFinish}
-
     >
       <Form.Item
         name="Email"
@@ -64,16 +59,6 @@ const Login: React.FC = () => {
           onChange={handleLogin}
         />
       </Form.Item>
-      {/* <Form.Item>
-        <Form.Item name="remember" valuePropName="checked" noStyle>
-          <Checkbox>Remember me</Checkbox>
-        </Form.Item>
-
-        <a className="login-form-forgot" href="">
-          Forgot password
-        </a>
-      </Form.Item> */}
-
       <Form.Item id="login-form-button">
         <Button type="primary" htmlType="submit"  >
           Log in
