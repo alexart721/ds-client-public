@@ -2,12 +2,15 @@ import React, {useState} from 'react';
 import styles from '../../styles/signup.module.css';
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import { useRouter } from 'next/router';
+import { createNewUser } from '../../services/apiServices';
+import { User } from '../../types';
 
 interface State {
   firstName: string,
   lastName: string,
   email: string,
-  licenseID: number,
+  license: number,
   state: string
 }
 
@@ -15,21 +18,22 @@ const initialState: State = {
   firstName: '',
   lastName: '',
   email: '',
-  licenseID: 0,
+  license: 0,
   state: ''
 }
 
 const Signup: React.FC = () => {
   const [signup, setSignup] = useState<State>(initialState);
-  const [SignupError, setSignupError] = useState<boolean>(false);
+  const router = useRouter();
 
   const handleSignup: React.ChangeEventHandler<HTMLInputElement> = ({target}) => {
     setSignup((oldSignup: State) => ({...oldSignup, [target.name]:target.value}))
-    setSignupError(false);
   };
 
-  const onFinish = (values: string) => {
-    console.log('Received values of form: ', values);
+  const onFinish = async (values: User) => {
+    const newUser = await createNewUser(values).then(res => res.json());
+    // Logic to generate email and send to admin
+    router.push('/appReceived');
   };
 
   return (
@@ -76,14 +80,14 @@ const Signup: React.FC = () => {
         />
       </Form.Item>
       <Form.Item
-        name="License ID"
+        name="License"
         rules={[{ required: true, message: 'Please input your Password!' }]}
       >
         <Input
           prefix={<LockOutlined className="site-form-item-icon" />}
-          type="License ID"
-          placeholder="License ID"
-          value={signup.licenseID}
+          type="License"
+          placeholder="License"
+          value={signup.license}
           onChange={handleSignup}
         />
       </Form.Item>
