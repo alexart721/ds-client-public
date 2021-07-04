@@ -21,7 +21,8 @@ const Login: React.FC = () => {
   const onFinish = async (values: UserLogin) => {
     try {
       const accessToken = await loginUser(values).then(res => res.json());
-      // Redirect to auth client
+      localStorage.setItem('accessToken', accessToken);
+      // Redirect to auth client home page
     } catch (error) {
       console.error(error);
     }

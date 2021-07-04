@@ -11,7 +11,8 @@ const Register: React.FC<{ user: User, accessToken: string }> = ({ user, accessT
   const onFinish = async (values: UserAuth) => {
     try {
       const newAccessToken: string = await setUserPassword(accessToken, values).then(res => res.json());
-      // Need to redirect to auth side of client here
+      localStorage.setItem('accessToken', newAccessToken);
+      // Redirct url to authorized home page
     } catch (error) {
       console.error(error);
     }
