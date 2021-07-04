@@ -50,7 +50,7 @@ const RegisterPage: React.FC<{ user: User, accessToken: string }> = ({ user, acc
   return (
     <div className={styles.container}>
       {isApproved ?
-      <Register user={ filteredUser } accessToken={accessToken} />
+      <Register user={ filteredUser } accessToken={ accessToken } />
       : <div>Link no longer valid.</div>
       }
     </div>
