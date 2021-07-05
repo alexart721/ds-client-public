@@ -31,8 +31,7 @@ const Signup: React.FC = () => {
   };
 
   const onFinish = async (values: User) => {
-    const newUser = await createNewUser(values).then(res => res.json());
-    // Logic to generate email and send to admin
+    await createNewUser(values).then(res => res.json());
     router.push('/appReceived');
   };
 
@@ -46,7 +45,7 @@ const Signup: React.FC = () => {
     >
       <h1>Welcome to DocterSource!</h1>
       <Form.Item
-        name="FirstName"
+        name="firstName"
         rules={[{ required: true, message: 'Please input your Username!' }]}
       >
         <Input
@@ -58,7 +57,7 @@ const Signup: React.FC = () => {
         />
       </Form.Item>
       <Form.Item
-        name="LastName"
+        name="lastName"
         rules={[{ required: true, message: 'Please input your Username!' }]}
       >
         <Input
@@ -69,7 +68,7 @@ const Signup: React.FC = () => {
         />
       </Form.Item>
       <Form.Item
-        name="Email"
+        name="email"
         rules={[{ required: true, message: 'Please input your Username!' }]}
       >
         <Input
@@ -80,7 +79,7 @@ const Signup: React.FC = () => {
         />
       </Form.Item>
       <Form.Item
-        name="License"
+        name="license"
         rules={[{ required: true, message: 'Please input your Password!' }]}
       >
         <Input
@@ -92,7 +91,7 @@ const Signup: React.FC = () => {
         />
       </Form.Item>
       <Form.Item
-        name="State"
+        name="state"
         rules={[{ required: true, message: 'Please input your Password!' }]}
       >
         <Input

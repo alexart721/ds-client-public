@@ -50,7 +50,7 @@ export const createNewUser = (user: User): Promise<Response> => {
 
 // POST to login a user
 export const loginUser = (user: UserLogin): Promise<Response> => {
-  return fetch(BASE_API_URL + '/users', {
+  return fetch(BASE_AUTH_URL + '/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

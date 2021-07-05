@@ -7,11 +7,13 @@ import { useRouter } from 'next/dist/client/router';
 import { setUserPassword } from '../../services/apiServices';
 
 const Register: React.FC<{ user: User, accessToken: string }> = ({ user, accessToken }) => {
+  const router = useRouter();
 
   const onFinish = async (values: UserAuth) => {
     try {
       const newAccessToken: string = await setUserPassword(accessToken, values).then(res => res.json());
-      // Need to redirect to auth side of client here
+      localStorage.setItem('accessToken', newAccessToken);
+      router.push('http://localhost:3000');
     } catch (error) {
       console.error(error);
     }
@@ -33,7 +35,7 @@ const Register: React.FC<{ user: User, accessToken: string }> = ({ user, accessT
           ))
         }
         <Form.Item
-          name="Password"
+          name="password"
           rules={[{ required: true, message: 'Please input your Password!' }]}
         >
           <Input.Password

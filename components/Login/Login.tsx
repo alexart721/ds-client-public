@@ -5,6 +5,7 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { UserLogin } from '../../types';
 import { loginUser } from '../../services/apiServices';
 import styles from '../../styles/signup.module.css';
+import { useRouter } from 'next/router';
 
 const initialState: UserLogin = {
   email: '',
@@ -12,6 +13,7 @@ const initialState: UserLogin = {
 }
 
 const Login: React.FC = () => {
+  const router = useRouter();
   const [login, setLogin] = useState<UserLogin>(initialState);
 
   const handleLogin: React.ChangeEventHandler<HTMLInputElement> = ({target}) => {
@@ -21,8 +23,13 @@ const Login: React.FC = () => {
 
   const onFinish = async (values: UserLogin) => {
     try {
+      console.log(values);
+
       const accessToken = await loginUser(values).then(res => res.json());
-      // Redirect to auth client
+      console.log(accessToken);
+
+      localStorage.setItem('accessToken', accessToken);
+      router.push('http://localhost:3000');
     } catch (error) {
       console.error(error);
     }
@@ -38,7 +45,7 @@ const Login: React.FC = () => {
     >
       <h1>Welcome to DoctorSource!</h1>
       <Form.Item
-        name="Email"
+        name="email"
         rules={[{ required: true, message: 'Please input your Username!' }]}
       >
         <Input
