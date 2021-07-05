@@ -13,7 +13,10 @@ const Register: React.FC<{ user: User, accessToken: string }> = ({ user, accessT
     try {
       const newAccessToken: string = await setUserPassword(accessToken, values).then(res => res.json());
       localStorage.setItem('accessToken', newAccessToken);
-      router.push('http://localhost:3000');
+      router.push({
+        pathname: 'http://localhost:3000/',
+        query: { accessToken },
+      });
     } catch (error) {
       console.error(error);
     }
