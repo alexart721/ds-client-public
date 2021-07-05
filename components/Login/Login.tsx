@@ -4,6 +4,7 @@ import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { UserLogin } from '../../types';
 import { loginUser } from '../../services/apiServices';
+import styles from '../../styles/signup.module.css';
 
 const initialState: UserLogin = {
   email: '',
@@ -31,10 +32,11 @@ const Login: React.FC = () => {
   return (
     <Form
       name="normal_login"
-      className="login-form"
+      className={styles.loginform}
       initialValues={{ remember: true }}
       onFinish={onFinish}
     >
+      <h1>Welcome to DoctorSource!</h1>
       <Form.Item
         name="Email"
         rules={[{ required: true, message: 'Please input your Username!' }]}
