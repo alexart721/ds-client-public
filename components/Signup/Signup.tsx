@@ -31,8 +31,7 @@ const Signup: React.FC = () => {
   };
 
   const onFinish = async (values: User) => {
-    const newUser = await createNewUser(values).then(res => res.json());
-    console.log(newUser);
+    await createNewUser(values).then(res => res.json());
     router.push('/appReceived');
   };
 
