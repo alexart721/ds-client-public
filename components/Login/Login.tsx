@@ -23,13 +23,12 @@ const Login: React.FC = () => {
 
   const onFinish = async (values: UserLogin) => {
     try {
-      console.log(values);
-
-      const accessToken = await loginUser(values).then(res => res.json());
-      console.log(accessToken);
-
+      const { accessToken } = await loginUser(values).then(res => res.json());
       localStorage.setItem('accessToken', accessToken);
-      router.push('http://localhost:3000');
+      router.push({
+        pathname: 'http://localhost:3000/',
+        query: { accessToken },
+      });
     } catch (error) {
       console.error(error);
     }
