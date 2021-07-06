@@ -1,5 +1,7 @@
-export const BASE_AUTH_URL = 'http://localhost/auth';
-export const BASE_API_URL = 'http://localhost/api';
+// export const BASE_AUTH_URL = 'http://localhost/auth';
+// export const BASE_API_URL = 'http://localhost/api';
+export const BASE_AUTH_URL = 'http://localhost:4002';
+export const BASE_API_URL = 'http://localhost:4000';
 import { UserAuth, User, UserLogin } from "../types";
 
 // Check token validity for register page
