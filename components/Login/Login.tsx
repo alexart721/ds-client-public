@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { UserLogin } from '../../types';
 import { loginUser } from '../../services/apiServices';
@@ -10,7 +10,7 @@ import { useRouter } from 'next/router';
 const initialState: UserLogin = {
   email: '',
   password: ''
-}
+};
 
 const Login: React.FC = () => {
   const router = useRouter();
@@ -26,7 +26,7 @@ const Login: React.FC = () => {
       const { accessToken } = await loginUser(values).then(res => res.json());
       localStorage.setItem('accessToken', accessToken);
       router.push({
-        pathname: 'http://localhost:3000/app/validate',
+        pathname: '/app/validate',
         query: { accessToken },
       });
     } catch (error) {
@@ -36,53 +36,55 @@ const Login: React.FC = () => {
 
 
   return (
-    <div className={styles.main}>
-      <Form
-        name="normal_login"
-        className={styles.loginform}
-        initialValues={{ remember: true }}
-        onFinish={onFinish}
-      >
-        <h2 className={styles.title}>Welcome to DoctorSource!</h2>
-        <Form.Item
-          name="email"
-          rules={[{ required: true, message: 'Please input your Username!' }]}
-
+    <div className={styles.outerDiv}>
+      <div className={styles.main}>
+        <Form
+          name="normal_login"
+          className={styles.loginform}
+          initialValues={{ remember: true }}
+          onFinish={onFinish}
         >
-          <Input
-            prefix={<UserOutlined className="site-form-item-icon" />}
-            type="Email"
-            placeholder="Email"
-            value={login.email}
-            onChange={handleLogin}
-            className={styles.un}
-          />
-        </Form.Item>
-        <Form.Item
-          name="password"
-          rules={[{ required: true, message: 'Please input your Password!' }]}
+          <h2 className={styles.title}>Welcome to DoctorSource!</h2>
+          <Form.Item
+            name="email"
+            rules={[{ required: true, message: 'Please input your Username!' }]}
+          >
+            <Input
+              type="Email"
+              placeholder="Email"
+              value={login.email}
+              onChange={handleLogin}
+              className={styles.un}
+            />
+          </Form.Item>
+          <Form.Item
+            name="password"
+            rules={[{ required: true, message: 'Please input your Password!' }]}
 
-        >
-          <Input
-            prefix={<LockOutlined className="site-form-item-icon" />}
-            className={styles.pass}
-            type="password"
-            placeholder="Password"
-            value={login.password}
-            onChange={handleLogin}
-          />
-        </Form.Item>
-        <Form.Item >
-          <Button type="primary" htmlType="submit" className={styles.submit} >
-            Log in
-          </Button>
-        </Form.Item>
-        <Form.Item className={styles.signuplink}>
-          <Link href="/signup">
-            <a >No account yet? Sign up!</a>
-          </Link>
-        </Form.Item>
-      </Form>
+          >
+            <Input
+              className={styles.pass}
+              type="password"
+              placeholder="Password"
+              value={login.password}
+              onChange={handleLogin}
+            />
+          </Form.Item>
+          <Form.Item >
+            <Button type="primary" htmlType="submit" className={styles.submit} >
+              Log in
+            </Button>
+          </Form.Item>
+          <Form.Item className={styles.signuplink}>
+            <p>No account yet?
+            <Link href="/signup">
+              <a className={styles.loginLink}> Sign up! </a>
+            </Link>
+            here
+            </p>
+          </Form.Item>
+        </Form>
+      </div>
     </div>
 
   );
