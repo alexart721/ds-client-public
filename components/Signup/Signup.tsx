@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import Link from 'next/link';
 import styles from '../../styles/signup.module.css';
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
@@ -36,85 +37,87 @@ const Signup: React.FC = () => {
   };
 
   return (
-    <div className={styles.main}>
-      <Form
-        name="normal_login"
-        //className="login-form"
-        initialValues={{ remember: true }}
-        onFinish={onFinish}
-        className={styles.loginform}
-      >
-         <h2 className={styles.title}>Welcome to DoctorSource!</h2>
-        <Form.Item
-          name="firstName"
-          rules={[{ required: true, message: 'Please input your Username!' }]}
+    <div className={styles.outerDiv}>
+      <div className={styles.main}>
+        <Form
+          name="normal_login"
+          initialValues={{ remember: true }}
+          onFinish={onFinish}
+          className={styles.loginform}
         >
-          <Input
-            prefix={<UserOutlined
-            className="site-form-item-icon" />}
-            placeholder="First Name"
-            value={signup.firstName}
-            onChange={handleSignup}
-            className={styles.un}
-          />
-        </Form.Item>
-        <Form.Item
-          name="lastName"
-          rules={[{ required: true, message: 'Please input your Username!' }]}
-        >
-          <Input
-            prefix={<UserOutlined className="site-form-item-icon" />}
-            placeholder="Last Name"
-            value={signup.lastName}
-            onChange={handleSignup}
-            className={styles.un}
-          />
-        </Form.Item>
-        <Form.Item
-          name="email"
-          rules={[{ required: true, message: 'Please input your Username!' }]}
-        >
-          <Input
-            prefix={<UserOutlined className="site-form-item-icon" />}
-            placeholder="Email"
-            value={signup.email}
-            onChange={handleSignup}
-            className={styles.un}
-          />
-        </Form.Item>
-        <Form.Item
-          name="license"
-          rules={[{ required: true, message: 'Please input your Password!' }]}
-        >
-          <Input
-            prefix={<LockOutlined className="site-form-item-icon" />}
-            type="License"
-            placeholder="License"
-            value={signup.license}
-            onChange={handleSignup}
-            className={styles.un}
-          />
-        </Form.Item>
-        <Form.Item
-          name="state"
-          rules={[{ required: true, message: 'Please input your Password!' }]}
-        >
-          <Input
-            prefix={<LockOutlined className="site-form-item-icon" />}
-            placeholder="State"
-            value={signup.state}
-            onChange={handleSignup}
-            className={styles.un}
-          />
-        </Form.Item>
-        <Form.Item>
-          <Button type="primary" htmlType="submit" className={styles.submit}>
-            Sign Up!
-          </Button>
-        </Form.Item>
-      </Form>
+          <h2 className={styles.title}>Welcome to DoctorSource!</h2>
+          <Form.Item
+            name="firstName"
+            rules={[{ required: true, message: 'Please input your First Name!' }]}
+          >
+            <Input
+              placeholder="First Name"
+              value={signup.firstName}
+              onChange={handleSignup}
+              className={styles.un}
+            />
+          </Form.Item>
+          <Form.Item
+            name="lastName"
+            rules={[{ required: true, message: 'Please input your Last Name!' }]}
+          >
+            <Input
+              placeholder="Last Name"
+              value={signup.lastName}
+              onChange={handleSignup}
+              className={styles.un}
+            />
+          </Form.Item>
+          <Form.Item
+            name="email"
+            rules={[{ required: true, message: 'Please input your Email!' }]}
+          >
+            <Input
+              placeholder="Email"
+              value={signup.email}
+              onChange={handleSignup}
+              className={styles.un}
+            />
+          </Form.Item>
+          <Form.Item
+            name="license"
+            rules={[{ required: true, message: 'Please input your License!' }]}
+          >
+            <Input
+              type="License"
+              placeholder="License"
+              value={signup.license}
+              onChange={handleSignup}
+              className={styles.un}
+            />
+          </Form.Item>
+          <Form.Item
+            name="state"
+            rules={[{ required: true, message: 'Please input your State!' }]}
+          >
+            <Input
+              placeholder="State"
+              value={signup.state}
+              onChange={handleSignup}
+              className={styles.un}
+            />
+          </Form.Item>
+          <Form.Item>
+            <Button type="primary" htmlType="submit" className={styles.submit}>
+              Sign Up!
+            </Button>
+          </Form.Item>
+          <Form.Item className={styles.signuplink}>
+            <p>Already have an account?
+            <Link href="/">
+              <a className={styles.loginLink}> Login </a>
+            </Link>
+            here
+            </p>
+          </Form.Item>
+        </Form>
+      </div>
     </div>
-
   )
 };
 
