@@ -14,7 +14,7 @@ const Register: React.FC<{ user: User, accessToken: string }> = ({ user, accessT
       const newAccessToken: string = await setUserPassword(accessToken, values).then(res => res.json());
       localStorage.setItem('accessToken', newAccessToken);
       router.push({
-        pathname: 'http://localhost:3000/validate',
+        pathname: '/validate',
         query: { accessToken },
       });
     } catch (error) {
