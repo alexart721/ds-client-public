@@ -26,14 +26,14 @@ const Register: React.FC<{ user: User, accessToken: string }> = ({ user, accessT
     <div className={styles.container}>
       <Form
         name="normal_login"
-        // className="login-form"
+        className={styles.loginform}
         initialValues={user}
         onFinish={onFinish}
       >
         {
           Object.entries(user).map(([key, value]) => (
             <Form.Item name={key}>
-              <Input value={value} disabled />
+              <Input value={value} className={styles.un} disabled />
             </Form.Item>
           ))
         }
@@ -44,10 +44,11 @@ const Register: React.FC<{ user: User, accessToken: string }> = ({ user, accessT
           <Input.Password
             prefix={<LockOutlined className="site-form-item-icon" />}
             placeholder="Password"
+            className={styles.un}
           />
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit" className="login-form-button">
+          <Button type="primary" htmlType="submit" className={styles.submit}>
             Register
           </Button>
         </Form.Item>
