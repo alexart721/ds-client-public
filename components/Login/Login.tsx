@@ -36,7 +36,8 @@ const Login: React.FC = () => {
 
 
   return (
-    <div className={styles.main}>
+    <div className={styles.outerDiv}>
+      <div className={styles.main}>
       <Form
         name="normal_login"
         className={styles.loginform}
@@ -84,6 +85,8 @@ const Login: React.FC = () => {
         </Form.Item>
       </Form>
     </div>
+    </div>
+
 
   );
 };
