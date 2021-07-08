@@ -19,7 +19,7 @@
         },
         "ecmaVersion": 12,
         "sourceType": "module",
-        "project": "./ds-client-public/tsconfig.json"
+        "project": "tsconfig.json"
     },
     "plugins": [
         "react",
