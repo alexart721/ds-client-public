@@ -1,9 +1,9 @@
-// export const BASE_AUTH_URL = 'http://localhost:4002';
-// export const BASE_API_URL = 'http://localhost:4000';
+export const BASE_AUTH_URL = 'http://localhost:4002';
+export const BASE_API_URL = 'http://localhost:4000';
 import { UserAuth, User, UserLogin } from '../types';
 
-export const BASE_AUTH_URL = 'http://localhost/auth';
-export const BASE_API_URL = 'http://localhost/api';
+// export const BASE_AUTH_URL = 'http://localhost/auth';
+// export const BASE_API_URL = 'http://localhost/api';
 
 // Check token validity for register page
 export const checkToken = (token: string, roles: string): Promise<Response> => fetch(`${BASE_AUTH_URL}/checkAccess`, {
