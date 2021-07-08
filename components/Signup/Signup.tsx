@@ -110,9 +110,8 @@ const Signup: React.FC = () => {
           <Form.Item className={styles.signuplink}>
             <p>Already have an account?
             <Link href="/">
-              <a className={styles.loginLink}> Login </a>
+              <a className={styles.loginLink}> Login! </a>
             </Link>
-            here
             </p>
           </Form.Item>
         </Form>

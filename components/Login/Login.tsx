@@ -26,7 +26,7 @@ const Login: React.FC = () => {
       const { accessToken } = await loginUser(values).then(res => res.json());
       localStorage.setItem('accessToken', accessToken);
       router.push({
-        pathname: '/app/validate',
+        pathname: 'http://localhost:3000/app/validate',
         query: { accessToken },
       });
     } catch (error) {
@@ -80,7 +80,6 @@ const Login: React.FC = () => {
             <Link href="/signup">
               <a className={styles.loginLink}> Sign up! </a>
             </Link>
-            here
             </p>
           </Form.Item>
         </Form>   
