@@ -25,7 +25,7 @@ const Login: React.FC = () => {
       console.log(accessToken);
       localStorage.setItem('accessToken', accessToken);
       router.push({
-        pathname: 'http://localhost:3000/app/validate',
+        pathname: '/app/validate',
         query: { accessToken },
       });
     } catch (error) {
