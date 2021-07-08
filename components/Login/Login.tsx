@@ -1,29 +1,27 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Form, Input, Button } from 'antd';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import { useRouter } from 'next/router';
 import { UserLogin } from '../../types';
 import { loginUser } from '../../services/apiServices';
 import styles from '../../styles/login.module.css';
-import { useRouter } from 'next/router';
 
 const initialState: UserLogin = {
   email: '',
-  password: ''
+  password: '',
 };
 
 const Login: React.FC = () => {
   const router = useRouter();
   const [login, setLogin] = useState<UserLogin>(initialState);
 
-  const handleLogin: React.ChangeEventHandler<HTMLInputElement> = ({target}) => {
-    setLogin((oldLogin: UserLogin) => ({...oldLogin, [target.name]:target.value}))
+  const handleLogin: React.ChangeEventHandler<HTMLInputElement> = ({ target }) => {
+    setLogin((oldLogin: UserLogin) => ({ ...oldLogin, [target.name]: target.value }));
   };
-
 
   const onFinish = async (values: UserLogin) => {
     try {
-      const { accessToken } = await loginUser(values).then(res => res.json());
+      const { accessToken } = await loginUser(values).then((res) => res.json());
       localStorage.setItem('accessToken', accessToken);
       router.push({
         pathname: '/app/validate',
@@ -33,7 +31,6 @@ const Login: React.FC = () => {
       console.error(error);
     }
   };
-
 
   return (
     <div className={styles.outerDiv}>
@@ -70,20 +67,21 @@ const Login: React.FC = () => {
               onChange={handleLogin}
             />
           </Form.Item>
-          <Form.Item >
-            <Button type="primary" htmlType="submit" className={styles.submit} >
+          <Form.Item>
+            <Button type="primary" htmlType="submit" className={styles.submit}>
               Log in
             </Button>
           </Form.Item>
           <Form.Item className={styles.signuplink}>
-            <p>No account yet?
-            <Link href="/signup">
-              <a className={styles.loginLink}> Sign up! </a>
-            </Link>
-            here
+            <p>
+              No account yet?
+              <Link href="/signup" passHref>
+                <button type="button" className={styles.loginLink}>Sign up!</button>
+              </Link>
+              here
             </p>
           </Form.Item>
-        </Form>   
+        </Form>
       </div>
     </div>
 
@@ -91,5 +89,3 @@ const Login: React.FC = () => {
 };
 
 export default Login;
-
-
