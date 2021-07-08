@@ -1,6 +1,7 @@
+import { UserAuth, User, UserLogin } from '../types';
+
 // export const NEXT_PUBLIC_BASE_AUTH_URL = 'http://localhost:4002';
 // export const BASE_API_URL = 'http://localhost:4000';
-import { UserAuth, User, UserLogin } from '../types';
 
 export const NEXT_PUBLIC_BASE_AUTH_URL = 'http://localhost/auth';
 export const BASE_API_URL = 'http://localhost/api';

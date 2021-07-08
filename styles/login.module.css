@@ -8,13 +8,10 @@
   align-items: center;
   height: 100vh;
   background-color: #D0E4F7;
-  font-family:  'Libre Caslon Text', serif;
   color: #103456;
 }
 
 .main {
-  position:absolute;
-  bottom: 20rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -48,11 +45,11 @@
   flex-direction: row;
   justify-content:space-evenly;
   width: 76%;
-  color: rgb(38, 50, 56);
+  color: rgb(0, 0, 0);
   font-weight: 700;
   font-size: 14px;
   letter-spacing: 1px;
-  background: rgba(136, 126, 126, 0.04);
+  background: #e8f2fb8f;
   padding: 10px 20px;
   border: 0;
   border-radius: 20px;
@@ -62,6 +59,7 @@
   margin-left: 46px;
   text-align: center;
   margin-bottom: 0.5rem;
+  border: 2px solid #969696;
 }
 
 .loginLink {
@@ -78,7 +76,7 @@
   font-weight: 700;
   font-size: 14px;
   letter-spacing: 1px;
-  background: rgba(136, 126, 126, 0.04);
+  background: #e8f2fb8f;
   padding: 10px 20px;
   border: none;
   border-radius: 20px;
@@ -89,6 +87,7 @@
   text-align: center;
   margin-bottom: 0.5rem;
   margin-top: 0.8rem;
+  border: 2px solid #969696;
 }
 
 
