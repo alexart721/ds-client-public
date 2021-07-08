@@ -22,6 +22,7 @@ const Login: React.FC = () => {
   const onFinish = async (values: UserLogin) => {
     try {
       const { accessToken } = await loginUser(values).then((res) => res.json());
+      console.log(accessToken);
       localStorage.setItem('accessToken', accessToken);
       router.push({
         pathname: '/app/validate',
@@ -76,7 +77,7 @@ const Login: React.FC = () => {
             <p>
               No account yet?
               <Link href="/signup" passHref>
-                <button type="button" className={styles.loginLink}>Sign up!</button>
+                <a><div className={styles.loginLink}>Sign up!</div></a>
               </Link>
               here
             </p>
