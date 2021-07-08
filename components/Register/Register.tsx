@@ -1,9 +1,9 @@
 import React from 'react';
-import styles from '../../styles/signup.module.css';
 import { Form, Input, Button } from 'antd';
 import { LockOutlined } from '@ant-design/icons';
-import { UserAuth, User } from '../../types';
 import { useRouter } from 'next/dist/client/router';
+import { UserAuth, User } from '../../types';
+import styles from '../../styles/signup.module.css';
 import { setUserPassword } from '../../services/apiServices';
 
 const Register: React.FC<{ user: User, accessToken: string }> = ({ user, accessToken }) => {
@@ -11,7 +11,8 @@ const Register: React.FC<{ user: User, accessToken: string }> = ({ user, accessT
 
   const onFinish = async (values: UserAuth) => {
     try {
-      const newAccessToken: string = await setUserPassword(accessToken, values).then(res => res.json());
+      const newAccessToken: string = await setUserPassword(accessToken, values)
+        .then((res) => res.json());
       localStorage.setItem('accessToken', newAccessToken);
       router.push({
         pathname: '/app/validate',
@@ -32,7 +33,7 @@ const Register: React.FC<{ user: User, accessToken: string }> = ({ user, accessT
       >
         {
           Object.entries(user).map(([key, value]) => (
-            <Form.Item name={key}>
+            <Form.Item name={key} key={key}>
               <Input value={value} className={styles.un} disabled />
             </Form.Item>
           ))
@@ -54,8 +55,7 @@ const Register: React.FC<{ user: User, accessToken: string }> = ({ user, accessT
         </Form.Item>
       </Form>
     </div>
-  )
+  );
 };
-
 
 export default Register;

@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import styles from '../../styles/signup.module.css';
-import { Form, Input, Button, Checkbox } from 'antd';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import {
+  Form, Input, Button,
+} from 'antd';
 import { useRouter } from 'next/router';
+import styles from '../../styles/signup.module.css';
 import { createNewUser } from '../../services/apiServices';
 import { User } from '../../types';
 
@@ -20,19 +21,19 @@ const initialState: State = {
   lastName: '',
   email: '',
   license: 0,
-  state: ''
-}
+  state: '',
+};
 
 const Signup: React.FC = () => {
   const [signup, setSignup] = useState<State>(initialState);
   const router = useRouter();
 
-  const handleSignup: React.ChangeEventHandler<HTMLInputElement> = ({target}) => {
-    setSignup((oldSignup: State) => ({...oldSignup, [target.name]:target.value}))
+  const handleSignup: React.ChangeEventHandler<HTMLInputElement> = ({ target }) => {
+    setSignup((oldSignup: State) => ({ ...oldSignup, [target.name]: target.value }));
   };
 
   const onFinish = async (values: User) => {
-    await createNewUser(values).then(res => res.json());
+    await createNewUser(values).then((res) => res.json());
     router.push('/appReceived');
   };
 
@@ -108,18 +109,18 @@ const Signup: React.FC = () => {
             </Button>
           </Form.Item>
           <Form.Item className={styles.signuplink}>
-            <p>Already have an account?
-            <Link href="/">
-              <a className={styles.loginLink}> Login </a>
-            </Link>
-            here
+            <p>
+              Already have an account?
+              <Link href="/" passHref>
+                <button type="button" className={styles.loginLink}> Login </button>
+              </Link>
+              here
             </p>
           </Form.Item>
         </Form>
       </div>
     </div>
-  )
+  );
 };
-
 
 export default Signup;
