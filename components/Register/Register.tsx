@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from '../../styles/signup.module.css';
 import { Form, Input, Button } from 'antd';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import { LockOutlined } from '@ant-design/icons';
 import { UserAuth, User } from '../../types';
 import { useRouter } from 'next/dist/client/router';
 import { setUserPassword } from '../../services/apiServices';

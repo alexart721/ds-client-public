@@ -1,4 +1,4 @@
-import React, { Context, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { GetStaticProps } from 'next';
 import Register from '../../components/Register/Register';
 import styles from '../styles/signup.module.css';

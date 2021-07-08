@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Form, Input, Button } from 'antd';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { UserLogin } from '../../types';
 import { loginUser } from '../../services/apiServices';
 import styles from '../../styles/login.module.css';
